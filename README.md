@@ -134,6 +134,11 @@ EMAIL_PASS=your_email_app_password
 
 ---
 
+##  Links
+
+- **Live Demo:** https://chronohub-frontend.vercel.app
+- **GitHub Repository:** https://github.com/anshulsharma900/chronohub-employee-management
+
 ## License
 
 ISC
