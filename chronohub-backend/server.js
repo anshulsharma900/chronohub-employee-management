@@ -13,10 +13,31 @@ connectDB();
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://chronohub-frontend.vercel.app",
+];
+
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  origin: function (origin, callback) {
+    // Allow requests with no origin
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    // Allow your Vercel deployments
+    if (
+      allowedOrigins.includes(origin) ||
+      origin.endsWith(".vercel.app")
+    ) {
+      return callback(null, true);
+    }
+
+    callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
 };
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
